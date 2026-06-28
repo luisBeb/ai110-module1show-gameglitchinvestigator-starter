@@ -1,12 +1,12 @@
 def get_range_for_difficulty(difficulty: str):
     """Return (low, high) inclusive range for a given difficulty."""
-    # FIXME: Logic breaks here - Hard range is 1-50, easier than Normal (1-100)
     if difficulty == "Easy":
         return 1, 20
     if difficulty == "Normal":
         return 1, 100
+    # FIX: Hard was 1-50 (easier than Normal). Changed to 1-500 to be appropriately harder.
     if difficulty == "Hard":
-        return 1, 50
+        return 1, 500
     return 1, 100
 
 
@@ -37,20 +37,11 @@ def check_guess(guess, secret):
     if guess == secret:
         return "Win", "🎉 Correct!"
 
-    try:
-        # FIXME: Logic breaks here - hint messages are inverted
-        # guess > secret means guess is too high, should say Go LOWER not Go HIGHER
-        if guess > secret:
-            return "Too High", "📈 Go HIGHER!"
-        else:
-            return "Too Low", "📉 Go LOWER!"
-    except TypeError:
-        g = str(guess)
-        if g == secret:
-            return "Win", "🎉 Correct!"
-        if g > secret:
-            return "Too High", "📈 Go HIGHER!"
-        return "Too Low", "📉 Go LOWER!"
+    # FIX: Messages were inverted. guess > secret means guess is too high, go LOWER.
+    if guess > secret:
+        return "Too High", "📉 Go LOWER!"
+    else:
+        return "Too Low", "📈 Go HIGHER!"
 
 
 def update_score(current_score: int, outcome: str, attempt_number: int):
@@ -61,10 +52,8 @@ def update_score(current_score: int, outcome: str, attempt_number: int):
             points = 10
         return current_score + points
 
-    # FIXME: Logic breaks here - wrong guesses should never reward points
+    # FIX: Removed +5 reward for wrong guesses. Wrong guesses always subtract points.
     if outcome == "Too High":
-        if attempt_number % 2 == 0:
-            return current_score + 5
         return current_score - 5
 
     if outcome == "Too Low":
