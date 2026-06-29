@@ -31,6 +31,15 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📸 Demo Walkthrough
 
+1. User selects Normal difficulty (range: 1 to 100)
+2. User enters a guess of 40 → Game returns "📈 Go HIGHER!"
+3. User enters a guess of 70 → Game returns "📉 Go LOWER!"
+4. User enters a guess of 55 → Game returns "📈 Go HIGHER!"
+5. User enters a guess of 62 → Game returns "📉 Go LOWER!"
+6. User enters a guess of 58 → Game returns "🎉 Correct!"
+7. Score updates correctly after each guess
+8. Game ends and shows final score
+
 Describe your fixed game in numbered steps so a reader can follow along without watching a video:
 
 1. <!-- Describe this step -->

@@ -63,24 +63,24 @@ to cover win, too high, and too low cases.
 
 ## 4. What did you learn about Streamlit and state?
 
-Streamlit reruns the entire Python script from top to bottom every time the
-user interacts with the app, like clicking a button or typing in a field.
-Session state is how Streamlit remembers values between those reruns — without
-it, variables like the secret number or attempt count would reset to their
-starting values on every interaction. I explained it to myself like this: 
-imagine refreshing a webpage but the page remembers your progress because it
-saved it in a notepad before refreshing. The bug where attempts started at 1
-instead of 0 was a direct result of not understanding how session state
-initializes on the very first run.
+Streamlit reruns the entire Python script from top to bottom every time
+the user interacts with the app, like clicking a button or typing in a
+field. Session state is how Streamlit remembers values between those
+reruns — without it, variables like the secret number or attempt count
+would reset on every interaction. I think of it like refreshing a webpage
+but the page remembers your progress because it saved it in a notepad
+before refreshing. The bug where attempts started at 1 instead of 0 was
+a direct result of not understanding how session state initializes on the
+very first run.
 ---
 
 ## 5. Looking ahead: your developer habits
 
 One habit I want to reuse is adding FIXME comments directly in the code
-before touching anything, so I have a clear map of where the problems are
+before touching anything, so I have a clear map of where problems are
 before I start fixing. Next time I work with AI on a coding task, I would
-give it more specific context upfront — like pasting the exact function and
-describing the exact wrong behavior — instead of describing it vaguely. This
-project changed how I think about AI-generated code because I realized the AI
-can produce code that looks completely correct and runs without errors but
-still has subtle logic bugs that only show up during actual use.
+give it more specific context upfront — like pasting the exact function
+and describing the exact wrong behavior — instead of describing it vaguely.
+This project changed how I think about AI-generated code because I realized
+the AI can produce code that looks completely correct and runs without errors
+but still has subtle logic bugs that only show up during actual gameplay.
