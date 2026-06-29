@@ -31,25 +31,33 @@ Document at least 3 bugs you found. Add rows as needed.
 I used Claude as my AI coding assistant throughout this project. One example
 of a correct AI suggestion was when I asked it to explain why the hints were
 backwards — it correctly identified that the messages "Go HIGHER!" and
-"Go LOWER!" were swapped inside check_guess() in logic_utils.py, and I
-verified this by reading the if/else logic myself and confirming that
-guess > secret should always direct the player lower, not higher.
+"Go LOWER!" were swapped inside check_guess() in logic_utils.py. I verified
+this by reading the if/else logic myself and confirming that guess > secret
+should always direct the player lower not higher.
+
 One example of a misleading suggestion was when the AI initially explained
 the string conversion bug as just a type mismatch, but did not immediately
-flag that it was intentionally placed on even attempts — I had to read the
+flag that it was intentionally placed on even attempts. I had to read the
 code myself to see the `if attempts % 2 == 0` pattern causing it.
 
 ---
 
 ## 3. Debugging and testing your fixes
 
-I decided a bug was fixed when the game behavior matched what I expected
-after playing it again manually and running pytest. For the inverted hint bug,
+II decided a bug was fixed when the game behavior matched what I expected
+after playing it manually and running pytest. For the inverted hint bug,
 I tested by guessing a number I knew was higher than the secret and confirming
-the hint now said "Go LOWER!" correctly. I also wrote a pytest case that
-verified check_guess(85, 73) returns "Too High" and check_guess(30, 73)
-returns "Too Low". The AI helped me structure the test by suggesting clear
-input/output pairs to cover win, too high, and too low cases.
+the hint now said "Go LOWER!" correctly.
+
+I ran pytest on tests/test_game_logic.py and all 5 tests passed:
+- test_check_guess_too_high PASSED
+- test_check_guess_too_low PASSED
+- test_check_guess_correct PASSED
+- test_update_score_win PASSED
+- test_update_score_wrong_guess_never_gains_points PASSED
+
+The AI helped me structure the tests by suggesting clear input/output pairs
+to cover win, too high, and too low cases.
 
 ---
 
