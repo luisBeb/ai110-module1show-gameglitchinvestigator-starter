@@ -1,16 +1,23 @@
-from logic_utils import check_guess
+from logic_utils import check_guess, update_score, get_range_for_difficulty, parse_guess
 
-def test_winning_guess():
-    # If the secret is 50 and guess is 50, it should be a win
-    result = check_guess(50, 50)
-    assert result == "Win"
+def test_check_guess_too_high():
+    outcome, message = check_guess(85, 73)
+    assert outcome == "Too High"
+    assert "LOWER" in message
 
-def test_guess_too_high():
-    # If secret is 50 and guess is 60, hint should be "Too High"
-    result = check_guess(60, 50)
-    assert result == "Too High"
+def test_check_guess_too_low():
+    outcome, message = check_guess(30, 73)
+    assert outcome == "Too Low"
+    assert "HIGHER" in message
 
-def test_guess_too_low():
-    # If secret is 50 and guess is 40, hint should be "Too Low"
-    result = check_guess(40, 50)
-    assert result == "Too Low"
+def test_check_guess_correct():
+    outcome, message = check_guess(50, 50)
+    assert outcome == "Win"
+
+def test_update_score_win():
+    score = update_score(0, "Win", 1)
+    assert score > 0
+
+def test_update_score_wrong_guess_never_gains_points():
+    score = update_score(0, "Too High", 2)
+    assert score < 0
